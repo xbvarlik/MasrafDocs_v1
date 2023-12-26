@@ -18,6 +18,7 @@ POST /expense
     "Authorization": "Bearer token"
   },
   "Body": {
+    "documentImage": "file",
     "isTravelExpense": "bool",
     "travelId": "guid", //nullable
     "title": "string",

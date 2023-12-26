@@ -30,11 +30,11 @@
             <toc-element topic="Get-Expense-Collections.md"/>
         </toc-element>
         <toc-element topic="Travel.md">
-            <toc-element topic="Delete-Travel.md"/>
-            <toc-element topic="Update-Travel.md"/>
-            <toc-element topic="Get-Travel-Details.md"/>
-            <toc-element topic="Get-Travels.md"/>
             <toc-element topic="Create-Travel.md"/>
+            <toc-element topic="Get-Travels.md"/>
+            <toc-element topic="Get-Travel-Details.md"/>
+            <toc-element topic="Update-Travel.md"/>
+            <toc-element topic="Delete-Travel.md"/>
         </toc-element>
         <toc-element topic="Requests.md">
             <toc-element topic="Approve-Request.md"/>

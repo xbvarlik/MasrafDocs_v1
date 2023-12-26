@@ -36,10 +36,8 @@ POST /travel
 ```json
 {
   "isSuccess": true,
-  "statusCode": 200,
-  "data": {
-    
-  }
+  "statusCode": 201,
+  "data": null
 }
 ```
 {collapsible="true"}
