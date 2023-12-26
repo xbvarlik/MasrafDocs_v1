@@ -102,4 +102,8 @@
         <description>Created after removal of "Masraf" from API Docs</description>
         <accepts>Masraf.html</accepts>
     </rule>
+    <rule id="6aa53c30">
+        <description>Created after removal of "Changes" from API Docs</description>
+        <accepts>Changes.html</accepts>
+    </rule>
 </rules>
