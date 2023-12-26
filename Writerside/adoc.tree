@@ -10,6 +10,11 @@
     <toc-element topic="API-quickstart.md"/>
     <toc-element topic="API-reference.md">
         <toc-element topic="Home.md"/>
+        <toc-element topic="Auth.md">
+            <toc-element topic="Login.md"/>
+            <toc-element topic="Password-Reset-Request.md"/>
+            <toc-element topic="Change-Password.md"/>
+        </toc-element>
         <toc-element topic="Expense.md">
             <toc-element topic="Get-Expense-Types.md"/>
             <toc-element topic="Delete-Expense.md"/>
