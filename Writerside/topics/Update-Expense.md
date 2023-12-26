@@ -11,7 +11,9 @@ PATCH /expense/{id}
 
 ### Request
 
-<warning style="">Given in json for readability, application type is actually in multipart/formdata</warning>
+>Given in json for readability, application type is actually in multipart/formdata
+> 
+{style="note"}
 ```json
 {
     "Headers": {

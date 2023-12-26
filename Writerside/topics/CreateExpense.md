@@ -11,7 +11,10 @@ POST /expense
 
 ### Request
 
-<warning style="">Given in json for readability, application type is actually in multipart/formdata</warning>
+>Given in json for readability, application type is actually in multipart/formdata</warning
+> 
+{style="note"}
+
 ```json
 { 
   "Headers": {
@@ -20,7 +23,7 @@ POST /expense
   "Body": {
     "documentImage": "file",
     "isTravelExpense": "bool",
-    "travelId": "guid", //nullable
+    "travelId": "guid", 
     "title": "string",
     "expenseCenterId(masrafTuru)": "int",
     "expenseCenterObjectId(secilenProje)": "guid",
@@ -32,7 +35,7 @@ POST /expense
     "totalAmount": "decimal",
     "currencyId": "int",
     "vatRateId": "int",
-    "description": "string" //nullable
+    "description": "string" 
   }
 }
 ```
