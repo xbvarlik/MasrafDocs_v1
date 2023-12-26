@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="adoc"
+                 name="API Docs"
+                 start-page="api-docs.md">
+
+    <toc-element topic="api-docs.md"/>
+    <toc-element topic="API-quickstart.md"/>
+    <toc-element topic="API-reference.md">
+        <toc-element topic="Home.md"/>
+        <toc-element topic="Expense.md">
+            <toc-element topic="Get-Expense-Types.md"/>
+            <toc-element topic="Delete-Expense.md"/>
+            <toc-element topic="Update-Expense.md"/>
+            <toc-element topic="CreateExpense.md"/>
+            <toc-element topic="Expense-Details.md"/>
+            <toc-element topic="My-Expenses.md"/>
+            <toc-element topic="Get-Projects.md"/>
+            <toc-element topic="Get-Approved-Travels.md"/>
+        </toc-element>
+        <toc-element topic="Expense-Collection.md">
+            <toc-element topic="Edit-Expense-Collection.md"/>
+            <toc-element topic="Remove-Expenses-From-Collection.md"/>
+            <toc-element topic="Delete-Expense-Collection.md"/>
+            <toc-element topic="Add-Expense-to-Collection.md"/>
+            <toc-element topic="Get-Tags.md"/>
+            <toc-element topic="Create-Expense-Collection.md"/>
+            <toc-element topic="Get-Expense-Collections.md"/>
+        </toc-element>
+        <toc-element topic="Travel.md">
+            <toc-element topic="Delete-Travel.md"/>
+            <toc-element topic="Update-Travel.md"/>
+            <toc-element topic="Get-Travel-Details.md"/>
+            <toc-element topic="Get-Travels.md"/>
+            <toc-element topic="Create-Travel.md"/>
+        </toc-element>
+        <toc-element topic="Requests.md">
+            <toc-element topic="Approve-Request.md"/>
+            <toc-element topic="Reject-Request.md"/>
+            <toc-element topic="Get-Expense-Requests.md"/>
+            <toc-element topic="Expense-Request-Details.md"/>
+            <toc-element topic="Get-Travel-Requests.md"/>
+            <toc-element topic="Get-Travel-Request-Details.md"/>
+        </toc-element>
+    </toc-element>
+    <toc-element topic="Changes.md"/>
+</instance-profile>
