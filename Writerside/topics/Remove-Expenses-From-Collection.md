@@ -1,7 +1,7 @@
 # Remove Expenses From Collection
 
 ```HTTP
-PATCH /expenseCollection/{id}
+PATCH /expenseCollection/{id}/remove-expense
 ```
 
 ### Request

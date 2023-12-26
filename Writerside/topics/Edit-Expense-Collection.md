@@ -1,7 +1,7 @@
 # Edit Expense Collection
 
 ```HTTP
-PATCH /expenseCollection/{id}
+PATCH /expenseCollection/{id}/edit-collection
 ```
 
 ### Request
