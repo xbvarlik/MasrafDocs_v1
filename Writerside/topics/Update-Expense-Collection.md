@@ -10,6 +10,6 @@
 
 ## Remove Expense From Expense Collection
 
-<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection/{id}/{collectionId}/remove-expense/{expenseId}" method="PATCH"/>
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection/{collectionId}/remove-expense/{expenseId}" method="PATCH"/>
 
 ## Process Engineer Notes

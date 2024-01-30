@@ -20,16 +20,6 @@
 
 <api-endpoint openapi-path="../openapi.yaml" endpoint="/api/CostType/{id}" method="GET"/>
 
-## ExpenseType
-
-### Get All ExpenseTypes
-
-<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/ExpenseType" method="GET"/>
-
-### Get ExpenseType by Id
-
-<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/ExpenseType/{id}" method="GET"/>
-
 ## PaymentMethod
 
 ### Get All PaymentMethods

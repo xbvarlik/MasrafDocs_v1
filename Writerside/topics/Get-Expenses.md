@@ -2,7 +2,7 @@
 
 ## Get All Expenses
 
-<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expense/" method="GET"/>
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expense" method="GET"/>
 
 ## Get Expense By Expense Id
 
