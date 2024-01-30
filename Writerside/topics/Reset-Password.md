@@ -2,7 +2,7 @@
 
 ## Password Reset Request
 
-<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/auth/reset-password" method="POST"/>
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/auth/password-reset-request" method="POST"/>
 
 ## Reset Password
 
