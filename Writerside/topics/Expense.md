@@ -1,3 +1,0 @@
-# Expense
-
-Start typing here...

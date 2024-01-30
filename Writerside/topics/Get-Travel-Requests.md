@@ -1,44 +1,11 @@
 # Get Travel Requests
 
-```HTTP
-GET /approval/request/travel
-```
+## Get All Travel Requests
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/approval/request/travel" method="GET"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
+## Get Travel Request By Expense Id
 
-### Success Response
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/approval/request/travel/{id}" method="GET"/>
 
-```json
-{
-  "isSuccess": true,
-  "statusCode": 200,
-  "data": [
-    {
-      "id": "guid",
-      "title": "string",
-      "user": {
-        "id": "guid",
-        "name": "string"
-      },
-      "startDate": "dateOnly",
-      "endDate": "dateOnly",
-      "countryCode": "string",
-      "city": "string",
-      "status": {
-        "id": "int",
-        "name": "string"
-      }
-    }
-  ]
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

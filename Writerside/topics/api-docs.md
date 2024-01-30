@@ -48,17 +48,18 @@ If error response status code starts with 4, it means there is a problem with ho
 Check your payload and headers and see inner exception in the errorResponse part. Specific meanings of 
 inner exceptions are given below.
 
-| Exception Code            | What it means?                                                                      | What to do?                                                                      |
-|---------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
-| NttForbiddenException     | Current logged in user has not permission to access the requested route.            | Log in with a different user that has requested permission.                      |
-| NttNotFoundException      | Content looking for is not found.                                                   | Check parameters in payload and path.                                            |
-| NttNullException          | Some not nullable field in the request is null.                                     | Check parameters in payload and path.                                            |
-| NttAlreadyExistsException | Content with the same value for some unique field is already exist in the database. | Check unique fields in the payload.                                              |
-| NttBusinessException      | General response for outlier exceptions.                                            | Contact with the backend team.                                                   |
-| NttDatabaseException      | Something is wrong with database transactions.                                      | Contact with the backend team.                                                   |
-| NttOperationalException   | General response for operational exceptions.                                        | Check parameters and if you see nothing is wrong, contact with the backend team. |
-| NttUnauthorizedException  | Current user is not logged in and try to access a protected route.                  | Log in with a user and try again.                                                |
-| NttSystemException        | Internal server error. Something is not going as expected in the backend.           | Contact with the backend team.                                                   |
+| Exception Code            | What it means?                                                                      | What to do?                                                                                   |
+|---------------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| NttForbiddenException     | Current logged in user has not permission to access the requested route.            | Log in with a different user that has requested permission.                                   |
+| NttNotFoundException      | Content looking for is not found.                                                   | Check parameters in payload and path.                                                         |
+| NttNullException          | Some not nullable field in the request is null.                                     | Check parameters in payload and path.                                                         |
+| NttAlreadyExistsException | Content with the same value for some unique field is already exist in the database. | Check unique fields in the payload.                                                           |
+| NttBusinessException      | General response for outlier business exceptions.                                   | Check message to see what's wrong. Even then can't figure out, contact with the backend team. |
+| NttValidationException    | Some validation error occurred.                                                     | Check parameters in payload and path.                                                         |
+| NttOperationalException   | General response for operational exceptions.                                        | Check parameters and if you see nothing is wrong, contact with the backend team.              |
+| NttUnauthorizedException  | Current user is not logged in and try to access a protected route.                  | Log in with a user and try again.                                                             |
+| NttDatabaseException      | Something is wrong with database transactions.                                      | Contact with the backend team.                                                                |
+| NttSystemException        | Internal server error. Something is not going as expected in the backend.           | Contact with the backend team.                                                                |
 
 <seealso>
 

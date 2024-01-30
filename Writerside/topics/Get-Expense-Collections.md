@@ -1,32 +1,11 @@
-# Get Expense Collections (Klasorler)
+# Get Expense Collections
 
-```HTTP
-GET /expenseCollection
-```
+## Get All Expense Collections
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection" method="GET"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
+## Get Expense Collection By Id
 
-### Success Response
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection/{id}" method="GET"/>
 
-```json
-{
-  "isSuccess": true,
-  "statusCode": 200,
-  "data": [
-    {
-      "id": "guid",
-      "title": "string"
-    }
-  ]
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

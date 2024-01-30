@@ -1,35 +1,5 @@
 # Create Expense Collection
 
-```HTTP
-POST /expenseCollection
-```
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection" method="POST"/>
 
-### Request
-
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  },
-  "Body": {
-    "title": "string",
-    "tagName(kategori)": "string"
-  }
-}
-```
-{collapsible="true"}
-
-### Success Response
-
-```json
-{
-  "isSuccess": true,
-  "statusCode": 201,
-  "data": {
-    "id": "guid",
-    "title": "string",
-    "tagId": "guid"
-  }
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

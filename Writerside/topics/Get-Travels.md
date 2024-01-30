@@ -1,40 +1,15 @@
 # Get Travels
 
-```HTTP
-GET /travel
-```
+## Get All Travels
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel" method="GET"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
+## Get Travel By Id
 
-### Success Response
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel/{id}" method="GET"/>
 
-```json
-{
-  "isSuccess": true,
-  "statusCode": 200,
-  "data": [
-    {
-      "id": "guid",
-      "title": "string",
-      "startDate": "dateOnly",
-      "endDate": "dateOnly",
-      "countryCode": "string",
-      "city": "string",
-      "status": {
-        "id": "int",
-        "name": "string"
-      }
-    }
-  ]
-}
-```
-{collapsible="true"}
+## Get Current Travel
+
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel/current" method="GET"/>
+
+## Process Engineer Notes

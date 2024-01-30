@@ -1,27 +1,7 @@
 # Delete Expense Collection
 
-```HTTP
-DELETE /expenseCollection/{id}
-```
+## Delete Expense Collection By Id
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expenseCollection/{id}" method="DELETE"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
-
-### Success Response
-
-```json
-{
-  "isSuccess": true,
-  "statusCode": 204,
-  "data": null
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

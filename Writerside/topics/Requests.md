@@ -1,3 +1,0 @@
-# Approval
-
-Start typing here...

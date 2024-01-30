@@ -1,41 +1,11 @@
 # Get Expense Requests
 
-If separation of data according to status is desired, use query filters to achieve it.
+## Get All Expense Requests
 
-```HTTP
-GET /approval/request/expense
-```
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/approval/request/expense" method="GET"/>
 
-### Request
+## Get Expense Request By Expense Id
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/approval/request/expense/{id}" method="GET"/>
 
-### Success Response
-
-```json
-{
-  "isSuccess": true,
-  "statusCode": 200,
-  "data": [
-    {
-      "id": "guid",
-      "title": "string",
-      "user": {
-        "id": "guid",
-        "name": "string"
-      },
-      "date": "dateOnly",
-      "isTravel": "bool",
-      "travelRequestId": "guid"
-    }
-  ]
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

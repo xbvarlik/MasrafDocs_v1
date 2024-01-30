@@ -1,43 +1,11 @@
 # Create Travel
 
-```HTTP
-POST /travel
-```
+## Create Travel As Draft
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel/create-draft" method="POST"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }, 
-  "Body": {
-    "title": "string",
-    "expenseCenterId(masrafTuru)": "int",
-    "expenseCenterObjectId(secilenProje)": "guid",
-    "description": "string",
-    "startDate": "dateOnly",
-    "endDate": "dateOnly",
-    "countryId": "int",
-    "cityId": "int",
-    "travelTypeId(seyahatTuru)": "int",
-    "travelMethodId(vasita)": "int",
-    "isAccommodationUsed(otel)": "bool",
-    "isAdvancePaymentRequired": "bool",
-    "advancePaymentAmount": "decimal",
-    "advancePaymentCurrencyId": "int" 
-  }
-}
-```
-{collapsible="true"}
+## Create Travel And Send For Approval
 
-### Success Response
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel/create-and-send" method="POST"/>
 
-```json
-{
-  "isSuccess": true,
-  "statusCode": 201,
-  "data": null
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

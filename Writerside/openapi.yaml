@@ -1,803 +1,3502 @@
-openapi: 3.0.2
-servers:
-  - url: /v3
+openapi: 3.0.1
 info:
-  description: |-
-    This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about
-    Swagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!
-    You can now help us improve the API whether it's by making changes to the definition itself or to the code.
-    That way, with time, we can improve the API in general, and expose some of the new features in OAS3.
-
-    Some useful links:
-    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
-    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
-  version: 1.0.17
-  title: Swagger Petstore - OpenAPI 3.0
-  termsOfService: 'http://swagger.io/terms/'
-  contact:
-    email: apiteam@swagger.io
-  license:
-    name: Apache 2.0
-    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-tags:
-  - name: pet
-    description: Everything about your Pets
-    externalDocs:
-      description: Find out more
-      url: 'http://swagger.io'
-  - name: store
-    description: Access to Petstore orders
-    externalDocs:
-      description: Find out more about our store
-      url: 'http://swagger.io'
-  - name: user
-    description: Operations about user
+  title: MasrafBff.API
+  version: '1.0'
 paths:
-  /pet:
-    post:
+  /api/approval/request/{id}/approve:
+    patch:
       tags:
-        - pet
-      summary: Add a new pet to the store
-      description: Add a new pet to the store
-      operationId: addPet
+        - ApprovalRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
-          description: Successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/Pet'
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/approval/request/{id}/reject:
+    patch:
+      tags:
+        - ApprovalRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /request/expense:
+    get:
+      tags:
+        - ApprovalRequest
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetAllResponseModelICollectionIServiceResult
+  /request/expense/{id}:
+    get:
+      tags:
+        - ApprovalRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetResponseModelIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetResponseModelIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseRequestGetResponseModelIServiceResult
+  /request/travel:
+    get:
+      tags:
+        - ApprovalRequest
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetAllResponseModelICollectionIServiceResult
+  /request/travel/{id}:
+    get:
+      tags:
+        - ApprovalRequest
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetResponseModelIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetResponseModelIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelRequestGetResponseModelIServiceResult
+  /api/auth/login:
+    post:
+      tags:
+        - Auth
       requestBody:
-        description: Create a new pet in the store
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
+              $ref: '#/components/schemas/LoginModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/LoginModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/LoginModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SessionLoginModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLoginModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SessionLoginModelIServiceResult'
+  /api/auth/logout:
+    post:
+      tags:
+        - Auth
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/auth/reset-password:
     put:
       tags:
-        - pet
-      summary: Update an existing pet
-      description: Update an existing pet by Id
-      operationId: updatePet
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-        '405':
-          description: Validation exception
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+        - Auth
+      parameters:
+        - name: email
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: token
+          in: query
+          style: form
+          schema:
+            type: string
       requestBody:
-        description: Update an existent pet in the store
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Pet'
-  /pet/findByStatus:
-    get:
-      tags:
-        - pet
-      summary: Find pets by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: findPetsByStatus
-      parameters:
-        - name: status
-          in: query
-          description: Status values that need to be considered for filter
-          required: false
-          explode: true
-          schema:
-            type: string
-            enum:
-              - available
-              - pending
-              - sold
-            default: available
+              $ref: '#/components/schemas/ResetPasswordModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordModel'
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid status value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  /pet/findByTags:
-    get:
-      tags:
-        - pet
-      summary: Finds pets by tags
-      description: >-
-        Multiple tags can be provided with comma separated strings. Use tag1,
-        tag2, tag3 for testing.
-      operationId: findPetsByTags
-      parameters:
-        - name: tags
-          in: query
-          description: Tags to filter by
-          required: false
-          explode: true
-          schema:
-            type: array
-            items:
-              type: string
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid tag value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}':
-    get:
-      tags:
-        - pet
-      summary: Find pet by ID
-      description: Returns a single pet
-      operationId: getPetById
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to return
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Pet'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Pet not found
-      security:
-        - api_key: []
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+                $ref: '#/components/schemas/IServiceResult'
+  /api/auth/password-reset-request:
     post:
       tags:
-        - pet
-      summary: Update a pet in the store with form data
-      description: ''
-      operationId: updatePetWithForm
+        - Auth
       parameters:
-        - name: petId
-          in: path
-          description: ID of pet that needs to be updated
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: name
+        - name: email
           in: query
-          description: Name of pet that needs to be updated
-          schema:
-            type: string
-        - name: status
-          in: query
-          description: Status of pet that needs to be updated
-          schema:
-            type: string
-      responses:
-        '405':
-          description: Invalid input
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-    delete:
-      tags:
-        - pet
-      summary: Delete a pet
-      description: ''
-      operationId: deletePet
-      parameters:
-        - name: api_key
-          in: header
-          description: ''
-          required: false
-          schema:
-            type: string
-        - name: petId
-          in: path
-          description: Pet id to delete
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        '400':
-          description: Invalid pet value
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
-  '/pet/{petId}/uploadImage':
-    post:
-      tags:
-        - pet
-      summary: Upload an image
-      description: ''
-      operationId: uploadFile
-      parameters:
-        - name: petId
-          in: path
-          description: ID of pet to update
-          required: true
-          schema:
-            type: integer
-            format: int64
-        - name: additionalMetadata
-          in: query
-          description: Additional Metadata
-          required: false
+          style: form
           schema:
             type: string
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/ApiResponse'
-      security:
-        - petstore_auth:
-            - 'write:pets'
-            - 'read:pets'
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/auth/refresh-token:
+    post:
+      tags:
+        - Auth
+      parameters:
+        - name: refreshToken
+          in: query
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccessTokenModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenModelIServiceResult'
+  /api/Blob:
+    get:
+      tags:
+        - Blob
+      parameters:
+        - name: uri
+          in: query
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+    post:
+      tags:
+        - Blob
       requestBody:
         content:
-          application/octet-stream:
+          multipart/form-data:
             schema:
-              type: string
-              format: binary
-  /store/inventory:
-    get:
-      tags:
-        - store
-      summary: Find pet inventories by status
-      description: Returns a map of status codes to quantities
-      operationId: getInventory
-      x-swagger-router-controller: OrderController
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+            encoding:
+              file:
+                style: form
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StringIServiceResult'
             application/json:
               schema:
-                type: object
-                additionalProperties:
+                $ref: '#/components/schemas/StringIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StringIServiceResult'
+  /api/City:
+    get:
+      tags:
+        - City
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CityViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CityViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CityViewModel'
+  /api/City/{id}:
+    get:
+      tags:
+        - City
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CityViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CityViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CityViewModel'
+  /api/CostType:
+    get:
+      tags:
+        - CostType
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CostTypeViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CostTypeViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CostTypeViewModel'
+  /api/CostType/{id}:
+    get:
+      tags:
+        - CostType
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CostTypeViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostTypeViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CostTypeViewModel'
+  /api/Country:
+    get:
+      tags:
+        - Country
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryViewModel'
+  /api/Country/{id}:
+    get:
+      tags:
+        - Country
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CountryViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountryViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CountryViewModel'
+  /api/Currency:
+    get:
+      tags:
+        - Currency
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrencyViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrencyViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CurrencyViewModel'
+  /api/Currency/{id}:
+    get:
+      tags:
+        - Currency
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyViewModel'
+  /api/expense/create-draft:
+    post:
+      tags:
+        - Expense
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                DocumentImage:
+                  type: string
+                  format: binary
+                IsTravelExpense:
+                  type: boolean
+                TravelId:
+                  type: string
+                  format: uuid
+                Title:
+                  type: string
+                ExpenseCenterId:
                   type: integer
                   format: int32
-      security:
-        - api_key: []
-  /store/order/v1:
-    post:
-      tags:
-        - store
-      summary: Place an order for a pet
-      description: Place a new order in the store
-      operationId: placeOrder
-      x-swagger-router-controller: OrderController
+                ExpenseCenterObjectId:
+                  type: string
+                  format: uuid
+                CostTypeId:
+                  type: integer
+                  format: int32
+                InstitutionName:
+                  type: string
+                DocumentNumber:
+                  type: integer
+                  format: int32
+                DocumentDate:
+                  type: string
+                  format: date
+                PaymentMethodId:
+                  type: integer
+                  format: int32
+                TotalAmount:
+                  type: number
+                  format: double
+                CurrencyId:
+                  type: integer
+                  format: int32
+                VatRateId:
+                  type: integer
+                  format: int32
+                VatAmount:
+                  type: number
+                  format: double
+                Description:
+                  type: string
+            encoding:
+              DocumentImage:
+                style: form
+              IsTravelExpense:
+                style: form
+              TravelId:
+                style: form
+              Title:
+                style: form
+              ExpenseCenterId:
+                style: form
+              ExpenseCenterObjectId:
+                style: form
+              CostTypeId:
+                style: form
+              InstitutionName:
+                style: form
+              DocumentNumber:
+                style: form
+              DocumentDate:
+                style: form
+              PaymentMethodId:
+                style: form
+              TotalAmount:
+                style: form
+              CurrencyId:
+                style: form
+              VatRateId:
+                style: form
+              VatAmount:
+                style: form
+              Description:
+                style: form
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
-        '405':
-          description: Invalid input
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Order'
-  /store/order/v2:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expense/create-and-send:
     post:
       tags:
-        - store
-      summary: Place an order for a pet (v2)
-      description: Place a new order in the store with v2 endpoint
-      operationId: placeOrderV2
-      x-swagger-router-controller: OrderController
+        - Expense
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                DocumentImage:
+                  type: string
+                  format: binary
+                IsTravelExpense:
+                  type: boolean
+                TravelId:
+                  type: string
+                  format: uuid
+                Title:
+                  type: string
+                ExpenseCenterId:
+                  type: integer
+                  format: int32
+                ExpenseCenterObjectId:
+                  type: string
+                  format: uuid
+                CostTypeId:
+                  type: integer
+                  format: int32
+                InstitutionName:
+                  type: string
+                DocumentNumber:
+                  type: integer
+                  format: int32
+                DocumentDate:
+                  type: string
+                  format: date
+                PaymentMethodId:
+                  type: integer
+                  format: int32
+                TotalAmount:
+                  type: number
+                  format: double
+                CurrencyId:
+                  type: integer
+                  format: int32
+                VatRateId:
+                  type: integer
+                  format: int32
+                VatAmount:
+                  type: number
+                  format: double
+                Description:
+                  type: string
+            encoding:
+              DocumentImage:
+                style: form
+              IsTravelExpense:
+                style: form
+              TravelId:
+                style: form
+              Title:
+                style: form
+              ExpenseCenterId:
+                style: form
+              ExpenseCenterObjectId:
+                style: form
+              CostTypeId:
+                style: form
+              InstitutionName:
+                style: form
+              DocumentNumber:
+                style: form
+              DocumentDate:
+                style: form
+              PaymentMethodId:
+                style: form
+              TotalAmount:
+                style: form
+              CurrencyId:
+                style: form
+              VatRateId:
+                style: form
+              VatAmount:
+                style: form
+              Description:
+                style: form
       responses:
-        '201':
-          description: Order successfully placed
+        '200':
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Bad request
-        '405':
-          description: Invalid input
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expense/send/{id}:
+    patch:
+      tags:
+        - Expense
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expense/abort/{id}:
+    patch:
+      tags:
+        - Expense
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expense/{id}:
+    patch:
+      tags:
+        - Expense
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
       requestBody:
-        required: true
         content:
-          application/json:
+          multipart/form-data:
             schema:
-              $ref: '#/components/schemas/Order'
-  '/store/order/{orderId}':
+              type: object
+              properties:
+                Id:
+                  type: string
+                  format: uuid
+                DocumentImage:
+                  type: string
+                  format: binary
+                IsTravelExpense:
+                  type: boolean
+                TravelId:
+                  type: string
+                  format: uuid
+                Title:
+                  type: string
+                ExpenseCenterId:
+                  type: integer
+                  format: int32
+                ExpenseCenterObjectId:
+                  type: string
+                  format: uuid
+                CostTypeId:
+                  type: integer
+                  format: int32
+                InstitutionName:
+                  type: string
+                DocumentNumber:
+                  type: integer
+                  format: int32
+                DocumentDate:
+                  type: string
+                  format: date
+                PaymentMethodId:
+                  type: integer
+                  format: int32
+                TotalAmount:
+                  type: number
+                  format: double
+                CurrencyId:
+                  type: integer
+                  format: int32
+                VatRateId:
+                  type: integer
+                  format: int32
+                VatAmount:
+                  type: number
+                  format: double
+                Description:
+                  type: string
+            encoding:
+              Id:
+                style: form
+              DocumentImage:
+                style: form
+              IsTravelExpense:
+                style: form
+              TravelId:
+                style: form
+              Title:
+                style: form
+              ExpenseCenterId:
+                style: form
+              ExpenseCenterObjectId:
+                style: form
+              CostTypeId:
+                style: form
+              InstitutionName:
+                style: form
+              DocumentNumber:
+                style: form
+              DocumentDate:
+                style: form
+              PaymentMethodId:
+                style: form
+              TotalAmount:
+                style: form
+              CurrencyId:
+                style: form
+              VatRateId:
+                style: form
+              VatAmount:
+                style: form
+              Description:
+                style: form
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
     get:
       tags:
-        - store
-      summary: Find purchase order by ID
-      x-swagger-router-controller: OrderController
-      description: For valid response try integer IDs with value less than 5 or > 10. Other values
-        will generate exceptions.
-      operationId: getOrderById
+        - Expense
       parameters:
-        - name: orderId
+        - name: id
           in: path
-          description: ID of order that needs to be fetched
           required: true
+          style: simple
           schema:
-            type: integer
-            format: int64
+            type: string
+            format: uuid
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExpenseGetResponseModelIServiceResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/Order'
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
+                $ref: '#/components/schemas/ExpenseGetResponseModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseGetResponseModelIServiceResult'
     delete:
       tags:
-        - store
-      summary: Delete purchase order by ID
-      x-swagger-router-controller: OrderController
-      description: >-
-        For valid response try integer IDs with value < 1000. Anything above
-        1000 or nonintegers will generate API errors
-      operationId: deleteOrder
+        - Expense
       parameters:
-        - name: orderId
+        - name: id
           in: path
-          description: ID of the order that needs to be deleted
           required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expense:
+    get:
+      tags:
+        - Expense
+      parameters:
+        - name: Title
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: ExpenseCollectionId
+          in: query
+          style: form
+          schema:
+            type: string
+            format: uuid
+        - name: CurrencyId
+          in: query
+          style: form
           schema:
             type: integer
-            format: int64
+            format: int32
+        - name: CostTypeId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: MinAmount
+          in: query
+          style: form
+          schema:
+            type: number
+            format: double
+        - name: MaxAmount
+          in: query
+          style: form
+          schema:
+            type: number
+            format: double
+        - name: IsTravel
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: ExpenseCenterId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: BeginDate
+          in: query
+          style: form
+          schema:
+            type: string
+            format: date-time
+        - name: EndDate
+          in: query
+          style: form
+          schema:
+            type: string
+            format: date-time
+        - name: StatusId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
       responses:
-        '400':
-          description: Invalid ID supplied
-        '404':
-          description: Order not found
-  /user:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseGetAllResponseModelICollectionIServiceResult
+  /api/ExpenseCenter:
+    get:
+      tags:
+        - ExpenseCenter
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpenseCenterViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpenseCenterViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExpenseCenterViewModel'
+  /api/ExpenseCenter/{id}:
+    get:
+      tags:
+        - ExpenseCenter
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExpenseCenterViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCenterViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExpenseCenterViewModel'
+  /api/ExpenseCenterObject/departments:
+    get:
+      tags:
+        - ExpenseCenterObject
+      parameters:
+        - name: Domain
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: ParentId
+          in: query
+          style: form
+          schema:
+            type: string
+            format: uuid
+        - name: CompanyId
+          in: query
+          style: form
+          schema:
+            type: string
+            format: uuid
+        - name: IsDeleted
+          in: query
+          style: form
+          schema:
+            type: boolean
+        - name: PageSize
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: PageNumber
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelListIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelListIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelListIServiceResult'
+  /api/ExpenseCenterObject/departments/{id}:
+    get:
+      tags:
+        - ExpenseCenterObject
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+  /api/ExpenseCenterObject/department-of-user:
+    get:
+      tags:
+        - ExpenseCenterObject
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DepartmentViewModelIServiceResult'
+  /api/ExpenseCenterObject/projects:
+    get:
+      tags:
+        - ExpenseCenterObject
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProjectViewModelICollectionIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectViewModelICollectionIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProjectViewModelICollectionIServiceResult'
+  /api/expenseCollection:
+    get:
+      tags:
+        - ExpenseCollection
+      parameters:
+        - name: Title
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: ExpenseTypeId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetAllResponseModelICollectionIServiceResult
     post:
       tags:
-        - user
-      summary: Create user
-      description: This can only be done by the logged in user.
-      operationId: createUser
-      responses:
-        default:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
+        - ExpenseCollection
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
-        description: Created user object
-  /user/createWithList:
-    post:
-      tags:
-        - user
-      summary: Create list of users with given input array
-      description: 'Creates list of users with given input array'
-      x-swagger-router-controller: UserController
-      operationId: createUsersWithListInput
-      responses:
-        '200':
-          description: Successful operation
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        default:
-          description: successful operation
-        '400':
-          description: Invalid username supplied
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-      requestBody:
-        content:
-          application/json:
+              $ref: '#/components/schemas/ExpenseCollectionCreateRequestModel'
+          text/json:
             schema:
-              type: array
-              items:
-                $ref: '#/components/schemas/User'
-  /user/login:
-    get:
-      tags:
-        - user
-      summary: Log user into the system
-      description: ''
-      operationId: loginUser
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: false
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: false
-          schema:
-            type: string
+              $ref: '#/components/schemas/ExpenseCollectionCreateRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionCreateRequestModel'
       responses:
         '200':
-          description: successful operation
-          headers:
-            X-Rate-Limit:
-              description: calls per hour allowed by the user
-              schema:
-                type: integer
-                format: int32
-            X-Expires-After:
-              description: date in UTC when token expires
-              schema:
-                type: string
-                format: date-time
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
             application/json:
               schema:
-                type: string
-        '400':
-          description: Invalid username/password supplied
-  /user/logout:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expenseCollection/{id}:
     get:
       tags:
-        - user
-      summary: Log current user out
-      description: ''
-      operationId: logoutUser
-      parameters: []
-      responses:
-        default:
-          description: successful operation
-  '/user/{username}':
-    get:
-      tags:
-        - user
-      summary: Get user by user name
-      description: ''
-      operationId: getUserByName
+        - ExpenseCollection
       parameters:
-        - name: username
+        - name: id
           in: path
-          description: 'The name that needs to be fetched. Use user1 for testing. '
           required: true
+          style: simple
           schema:
             type: string
+            format: uuid
       responses:
         '200':
-          description: successful operation
+          description: Success
           content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetResponseModelIServiceResult
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid username supplied
-        '404':
-          description: User not found
-    put:
-      tags:
-        - user
-      summary: Update user
-      x-swagger-router-controller: UserController
-      description: This can only be done by the logged in user.
-      operationId: updateUser
-      parameters:
-        - name: username
-          in: path
-          description: name that needs to be updated
-          required: true
-          schema:
-            type: string
-      responses:
-        default:
-          description: successful operation
-      requestBody:
-        description: Update an existent user in the store
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/User'
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetResponseModelIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/ExpenseCollectionGetResponseModelIServiceResult
     delete:
       tags:
-        - user
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
+        - ExpenseCollection
       parameters:
-        - name: username
+        - name: id
           in: path
-          description: The name that needs to be deleted
           required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expenseCollection/{id}/edit-collection:
+    patch:
+      tags:
+        - ExpenseCollection
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionEditCollectionRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionEditCollectionRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionEditCollectionRequestModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expenseCollection/{id}/add-expense:
+    patch:
+      tags:
+        - ExpenseCollection
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionAddExpenseRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionAddExpenseRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ExpenseCollectionAddExpenseRequestModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/expenseCollection/{collectionId}/remove-expense/{expenseId}:
+    patch:
+      tags:
+        - ExpenseCollection
+      parameters:
+        - name: collectionId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+        - name: expenseId
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/PaymentMethod:
+    get:
+      tags:
+        - PaymentMethod
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentMethodViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentMethodViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentMethodViewModel'
+  /api/PaymentMethod/{id}:
+    get:
+      tags:
+        - PaymentMethod
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PaymentMethodViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethodViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PaymentMethodViewModel'
+  /api/Tag:
+    get:
+      tags:
+        - Tag
+      parameters:
+        - name: Name
+          in: query
+          style: form
           schema:
             type: string
       responses:
-        '400':
-          description: Invalid username supplied
-        '404':
-          description: User not found
-externalDocs:
-  description: Find out more about Swagger
-  url: 'http://swagger.io'
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TagViewModelICollectionIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelICollectionIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelICollectionIServiceResult'
+    post:
+      tags:
+        - Tag
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TagCreateModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TagCreateModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TagCreateModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+  /api/Tag/{id}:
+    get:
+      tags:
+        - Tag
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TagViewModelIServiceResult'
+    delete:
+      tags:
+        - Tag
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/create-draft:
+    post:
+      tags:
+        - Travel
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                Title:
+                  type: string
+                ExpenseCenterId:
+                  type: integer
+                  format: int32
+                ExpenseCenterObjectId:
+                  type: string
+                  format: uuid
+                Description:
+                  type: string
+                StartDate:
+                  type: string
+                  format: date
+                EndDate:
+                  type: string
+                  format: date
+                CountryId:
+                  type: integer
+                  format: int32
+                CityId:
+                  type: integer
+                  format: int32
+                TravelTypeId:
+                  type: integer
+                  format: int32
+                TravelMethodId:
+                  type: integer
+                  format: int32
+                IsAccommodationUsed:
+                  type: boolean
+                IsVehicleRequested:
+                  type: boolean
+                IsAdvancePaymentRequired:
+                  type: boolean
+                AdvancePaymentAmount:
+                  type: number
+                  format: double
+                CurrencyId:
+                  type: integer
+                  format: int32
+            encoding:
+              Title:
+                style: form
+              ExpenseCenterId:
+                style: form
+              ExpenseCenterObjectId:
+                style: form
+              Description:
+                style: form
+              StartDate:
+                style: form
+              EndDate:
+                style: form
+              CountryId:
+                style: form
+              CityId:
+                style: form
+              TravelTypeId:
+                style: form
+              TravelMethodId:
+                style: form
+              IsAccommodationUsed:
+                style: form
+              IsVehicleRequested:
+                style: form
+              IsAdvancePaymentRequired:
+                style: form
+              AdvancePaymentAmount:
+                style: form
+              CurrencyId:
+                style: form
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/create-and-send:
+    post:
+      tags:
+        - Travel
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                Title:
+                  type: string
+                ExpenseCenterId:
+                  type: integer
+                  format: int32
+                ExpenseCenterObjectId:
+                  type: string
+                  format: uuid
+                Description:
+                  type: string
+                StartDate:
+                  type: string
+                  format: date
+                EndDate:
+                  type: string
+                  format: date
+                CountryId:
+                  type: integer
+                  format: int32
+                CityId:
+                  type: integer
+                  format: int32
+                TravelTypeId:
+                  type: integer
+                  format: int32
+                TravelMethodId:
+                  type: integer
+                  format: int32
+                IsAccommodationUsed:
+                  type: boolean
+                IsVehicleRequested:
+                  type: boolean
+                IsAdvancePaymentRequired:
+                  type: boolean
+                AdvancePaymentAmount:
+                  type: number
+                  format: double
+                CurrencyId:
+                  type: integer
+                  format: int32
+            encoding:
+              Title:
+                style: form
+              ExpenseCenterId:
+                style: form
+              ExpenseCenterObjectId:
+                style: form
+              Description:
+                style: form
+              StartDate:
+                style: form
+              EndDate:
+                style: form
+              CountryId:
+                style: form
+              CityId:
+                style: form
+              TravelTypeId:
+                style: form
+              TravelMethodId:
+                style: form
+              IsAccommodationUsed:
+                style: form
+              IsVehicleRequested:
+                style: form
+              IsAdvancePaymentRequired:
+                style: form
+              AdvancePaymentAmount:
+                style: form
+              CurrencyId:
+                style: form
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/send/{id}:
+    patch:
+      tags:
+        - Travel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/abort/{id}:
+    patch:
+      tags:
+        - Travel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/{id}:
+    patch:
+      tags:
+        - Travel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TravelUpdateRequestModel'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/TravelUpdateRequestModel'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/TravelUpdateRequestModel'
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+    get:
+      tags:
+        - Travel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetDetailsResponseModelIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetDetailsResponseModelIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetDetailsResponseModelIServiceResult
+  /api/Travel:
+    get:
+      tags:
+        - Travel
+      parameters:
+        - name: Title
+          in: query
+          style: form
+          schema:
+            type: string
+        - name: ExpenseCenterId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: CurrencyId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: TravelMethodId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: CityId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: CountryId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: TravelTypeId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: StatusId
+          in: query
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: StartDate
+          in: query
+          style: form
+          schema:
+            type: string
+            format: date
+        - name: EndDate
+          in: query
+          style: form
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+    delete:
+      tags:
+        - Travel
+      parameters:
+        - name: id
+          in: query
+          style: form
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/IServiceResult'
+  /api/Travel/current:
+    get:
+      tags:
+        - Travel
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+            text/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/TravelGetAllResponseModelICollectionIServiceResult
+  /api/TravelMethod:
+    get:
+      tags:
+        - TravelMethod
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelMethodViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelMethodViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelMethodViewModel'
+  /api/TravelMethod/{id}:
+    get:
+      tags:
+        - TravelMethod
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TravelMethodViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelMethodViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TravelMethodViewModel'
+  /api/TravelType:
+    get:
+      tags:
+        - TravelType
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelTypeViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelTypeViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TravelTypeViewModel'
+  /api/TravelType/{id}:
+    get:
+      tags:
+        - TravelType
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TravelTypeViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TravelTypeViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TravelTypeViewModel'
+  /api/VatRate:
+    get:
+      tags:
+        - VatRate
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VatRateViewModel'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VatRateViewModel'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VatRateViewModel'
+  /api/VatRate/{id}:
+    get:
+      tags:
+        - VatRate
+      parameters:
+        - name: id
+          in: path
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VatRateViewModel'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VatRateViewModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VatRateViewModel'
 components:
   schemas:
-    Order:
-      x-swagger-router-model: io.swagger.petstore.model.Order
+    AccessTokenModel:
+      type: object
       properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        petId:
-          type: integer
-          format: int64
-          example: 198772
-        quantity:
-          type: integer
-          format: int32
-          example: 7
-        shipDate:
+        userId:
+          type: string
+          format: uuid
+        accessToken:
+          type: string
+          nullable: true
+        accessTokenExpirationDateTime:
           type: string
           format: date-time
-        status:
+        refreshToken:
           type: string
-          description: Order Status
-          enum:
-            - placed
-            - approved
-            - delivered
-          example: approved
-        complete:
+          nullable: true
+        refreshTokenExpirationDateTime:
+          type: string
+          format: date-time
+      additionalProperties: false
+    AccessTokenModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
           type: boolean
-      xml:
-        name: order
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    AccessTokenModelResult:
       type: object
-    Customer:
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/AccessTokenModel'
+      additionalProperties: false
+    ApplicationUserViewModel:
+      type: object
       properties:
         id:
-          type: integer
-          format: int64
-          example: 100000
-        username:
           type: string
-          example: fehguy
-        address:
-          type: array
-          items:
-            $ref: '#/components/schemas/Address'
-          xml:
-            wrapped: true
-            name: addresses
-      xml:
-        name: customer
-      type: object
-    Address:
-      properties:
-        street:
+          format: uuid
+        parentId:
           type: string
-          example: 437 Lytton
-        city:
+          format: uuid
+        departmentId:
           type: string
-          example: Palo Alto
-        state:
-          type: string
-          example: CA
-        zip:
-          type: string
-          example: 94301
-      xml:
-        name: address
-      type: object
-    Category:
-      x-swagger-router-model: io.swagger.petstore.model.Category
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 1
-        name:
-          type: string
-          example: Dogs
-      xml:
-        name: category
-      type: object
-    User:
-      x-swagger-router-model: io.swagger.petstore.model.User
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        username:
-          type: string
-          example: theUser
+          format: uuid
         firstName:
           type: string
-          example: John
+          nullable: true
         lastName:
           type: string
-          example: James
+          nullable: true
+        userName:
+          type: string
+          nullable: true
         email:
           type: string
-          example: john@email.com
+          nullable: true
+        phoneNumber:
+          type: string
+          nullable: true
+        maxApproverCount:
+          type: integer
+          format: int32
         password:
           type: string
-          example: 12345
-        phone:
-          type: string
-          example: 12345
-        userStatus:
+          nullable: true
+      additionalProperties: false
+    CityViewModel:
+      type: object
+      properties:
+        id:
           type: integer
           format: int32
-          example: 1
-          description: User Status
-      xml:
-        name: user
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+        countryId:
+          type: integer
+          format: int32
+      additionalProperties: false
+    CompanyViewModel:
       type: object
-    Tag:
-      x-swagger-router-model: io.swagger.petstore.model.Tag
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CostTypeViewModel:
+      type: object
       properties:
         id:
           type: integer
-          format: int64
-        name:
+          format: int32
+        languageCode:
           type: string
-      xml:
-        name: tag
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CountryViewModel:
       type: object
-    Pet:
-      x-swagger-router-model: io.swagger.petstore.model.Pet
-      required:
-        - name
-        - photoUrls
       properties:
         id:
           type: integer
-          format: int64
-          example: 10
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+        countryCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CurrencyViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+        symbol:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DepartmentViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
         name:
           type: string
-          example: doggie
-        category:
-          $ref: '#/components/schemas/Category'
-        photoUrls:
+          nullable: true
+        domain:
+          type: string
+          nullable: true
+        parentId:
+          type: string
+          format: uuid
+          nullable: true
+        companyId:
+          type: string
+          format: uuid
+        company:
+          $ref: '#/components/schemas/CompanyViewModel'
+        parent:
+          $ref: '#/components/schemas/DepartmentViewModel'
+        children:
           type: array
-          xml:
-            wrapped: true
           items:
-            type: string
-            xml:
-              name: photoUrl
-        tags:
+            $ref: '#/components/schemas/DepartmentViewModel'
+          nullable: true
+        users:
           type: array
-          xml:
-            wrapped: true
           items:
-            $ref: '#/components/schemas/Tag'
-            xml:
-              name: tag
+            $ref: '#/components/schemas/ApplicationUserViewModel'
+          nullable: true
+      additionalProperties: false
+    DepartmentViewModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    DepartmentViewModelListIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    DepartmentViewModelListResult:
+      type: object
+      properties:
         status:
-          type: string
-          description: pet status in the store
-          enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: pet
-      type: object
-    ApiResponse:
-      properties:
-        code:
-          type: integer
-          format: int32
-        type:
-          type: string
-        message:
-          type: string
-      xml:
-        name: '##default'
-      type: object
-    ErrorResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-          format: int32
-        details:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
           type: array
           items:
-            type: object
-            properties:
-              typeUrl:
-                type: string
-              value:
-                type: string
+            $ref: '#/components/schemas/DepartmentViewModel'
+          nullable: true
+      additionalProperties: false
+    DepartmentViewModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/DepartmentViewModel'
+      additionalProperties: false
+    ErrorModel:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: true
         message:
           type: string
-  requestBodies:
-    Pet:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Pet'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Pet'
-      description: Pet object that needs to be added to the store
-    UserArray:
-      content:
-        application/json:
-          schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
-      description: List of user object
+          nullable: true
+        location:
+          type: string
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ErrorResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/ErrorModel'
+      additionalProperties: false
+    ExpenseCenterObjectViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExpenseCenterViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionAddExpenseRequestModel:
+      type: object
+      properties:
+        expenseId:
+          type: string
+          format: uuid
+      additionalProperties: false
+    ExpenseCollectionChildViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        tag:
+          $ref: '#/components/schemas/TagViewModel'
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseViewModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionCreateRequestModel:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        tagName:
+          type: string
+          nullable: true
+        isTravel:
+          type: boolean
+      additionalProperties: false
+    ExpenseCollectionEditCollectionRequestModel:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        tagName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionGetAllResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        tagName:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionGetAllResponseModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseCollectionGetAllResponseModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseCollectionGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionGetResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        tagName:
+          type: string
+          nullable: true
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseCollectionGetResponseModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseCollectionGetResponseModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/ExpenseCollectionGetResponseModel'
+      additionalProperties: false
+    ExpenseCollectionParentViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        tag:
+          $ref: '#/components/schemas/TagViewModel'
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+      additionalProperties: false
+    ExpenseCollectionViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        applicationUser:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+        tag:
+          $ref: '#/components/schemas/TagViewModel'
+        parent:
+          $ref: '#/components/schemas/ExpenseCollectionParentViewModel'
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseCollectionChildViewModel'
+          nullable: true
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+        expenseType:
+          $ref: '#/components/schemas/ExpenseTypeViewModel'
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseViewModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseGetAllResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        date:
+          type: string
+          format: date
+        totalAmount:
+          type: number
+          format: double
+        isTravel:
+          type: boolean
+        currency:
+          $ref: '#/components/schemas/CurrencyViewModel'
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+      additionalProperties: false
+    ExpenseGetAllResponseModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseGetAllResponseModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseGetResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        documentImageUri:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        documentDate:
+          type: string
+          format: date
+        totalAmount:
+          type: number
+          format: double
+        institutionName:
+          type: string
+          nullable: true
+        documentNumber:
+          type: integer
+          format: int64
+        vatAmount:
+          type: number
+          format: double
+        description:
+          type: string
+          nullable: true
+        isTravel:
+          type: boolean
+        approverCount:
+          type: integer
+          format: int32
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+        expenseCenterObject:
+          $ref: '#/components/schemas/ExpenseCenterObjectViewModel'
+        expenseCenter:
+          $ref: '#/components/schemas/ExpenseCenterViewModel'
+        costType:
+          $ref: '#/components/schemas/CostTypeViewModel'
+        vatRate:
+          $ref: '#/components/schemas/VatRateViewModel'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethodViewModel'
+        currency:
+          $ref: '#/components/schemas/CurrencyViewModel'
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+      additionalProperties: false
+    ExpenseGetResponseModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseGetResponseModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/ExpenseGetResponseModel'
+      additionalProperties: false
+    ExpenseRequestGetAllResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/UserOfRequestViewModel'
+        date:
+          type: string
+          format: date
+        isTravel:
+          type: boolean
+        travelId:
+          type: string
+          format: uuid
+          nullable: true
+        travelName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+      additionalProperties: false
+    ExpenseRequestGetAllResponseModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseRequestGetAllResponseModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseRequestGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    ExpenseRequestGetResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/UserOfRequestViewModel'
+        approverCount:
+          type: integer
+          format: int32
+        date:
+          type: string
+          format: date
+        isTravel:
+          type: boolean
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+        totalAmount:
+          type: number
+          format: double
+        currency:
+          type: string
+          nullable: true
+        expenseCenter:
+          type: string
+          nullable: true
+        expenseCenterObject:
+          type: string
+          nullable: true
+        costType:
+          type: string
+          nullable: true
+        institutionName:
+          type: string
+          nullable: true
+        documentNumber:
+          type: integer
+          format: int64
+        paymentMethod:
+          type: string
+          nullable: true
+        vatRate:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+        description:
+          type: string
+          nullable: true
+        requestDetails:
+          $ref: '#/components/schemas/RequestDetailsModel'
+      additionalProperties: false
+    ExpenseRequestGetResponseModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ExpenseRequestGetResponseModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/ExpenseRequestGetResponseModel'
+      additionalProperties: false
+    ExpenseTypeViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ExpenseViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        institutionName:
+          type: string
+          nullable: true
+        documentNumber:
+          type: integer
+          format: int64
+        documentDate:
+          type: string
+          format: date
+        documentUri:
+          type: string
+          nullable: true
+        amount:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+        applicationUser:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+        expenseCollection:
+          $ref: '#/components/schemas/ExpenseCollectionViewModel'
+        currency:
+          $ref: '#/components/schemas/CurrencyViewModel'
+        vatRate:
+          $ref: '#/components/schemas/VatRateViewModel'
+        paymentMethod:
+          $ref: '#/components/schemas/PaymentMethodViewModel'
+        costType:
+          $ref: '#/components/schemas/CostTypeViewModel'
+        expenseType:
+          $ref: '#/components/schemas/ExpenseTypeViewModel'
+        expenseCenter:
+          $ref: '#/components/schemas/ExpenseCenterViewModel'
+        expenseCenterObject:
+          $ref: '#/components/schemas/ExpenseCenterObjectViewModel'
+        travel:
+          $ref: '#/components/schemas/TravelViewModel'
+      additionalProperties: false
+    HttpStatus:
+      enum:
+        - 200
+        - 201
+        - 202
+        - 204
+        - 400
+        - 401
+        - 403
+        - 404
+        - 500
+      type: integer
+      format: int32
+    IServiceResult:
+      type: object
+      properties:
+        isSuccess:
+          type: boolean
+          readOnly: true
+        result:
+          $ref: '#/components/schemas/Result'
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    LoginModel:
+      type: object
+      properties:
+        email:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentMethodViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ProjectViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        company:
+          $ref: '#/components/schemas/CompanyViewModel'
+        projectManager:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+      additionalProperties: false
+    ProjectViewModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    ProjectViewModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectViewModel'
+          nullable: true
+      additionalProperties: false
+    RequestDetailsModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        requestTypeId:
+          type: integer
+          format: int32
+        requestType:
+          type: string
+          nullable: true
+        requestLogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestLogModel'
+          nullable: true
+      additionalProperties: false
+    RequestLogModel:
+      type: object
+      properties:
+        givenStatusId:
+          type: integer
+          format: int32
+        givenStatus:
+          $ref: '#/components/schemas/StatusViewModel'
+        approverUserId:
+          type: string
+          format: uuid
+        approverUser:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+      additionalProperties: false
+    ResetPasswordModel:
+      type: object
+      properties:
+        password:
+          type: string
+          nullable: true
+        confirmPassword:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Result:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+      additionalProperties: false
+    SessionLoginModel:
+      type: object
+      properties:
+        applicationUserId:
+          type: string
+          format: uuid
+        departmentId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        companyName:
+          type: string
+          nullable: true
+        tenantId:
+          type: string
+          format: uuid
+        userName:
+          type: string
+          nullable: true
+        hasLoggedInPreviously:
+          type: boolean
+        accessTokenExpiryTime:
+          type: string
+          format: date-time
+        accessToken:
+          type: string
+          nullable: true
+        refreshTokenExpiryTime:
+          type: string
+          format: date-time
+        refreshToken:
+          type: string
+          nullable: true
+      additionalProperties: false
+    SessionLoginModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    SessionLoginModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/SessionLoginModel'
+      additionalProperties: false
+    StatusViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    StringIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    StringResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TagCreateModel:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TagViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+        applicationUser:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+      additionalProperties: false
+    TagViewModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TagViewModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TagViewModel'
+          nullable: true
+      additionalProperties: false
+    TagViewModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TagViewModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/TagViewModel'
+      additionalProperties: false
+    TravelDetailsModel:
+      type: object
+      properties:
+        expenseCenter:
+          $ref: '#/components/schemas/ExpenseCenterViewModel'
+        expenseCenterObject:
+          $ref: '#/components/schemas/ExpenseCenterObjectViewModel'
+        travelType:
+          $ref: '#/components/schemas/TravelTypeViewModel'
+        travelMethod:
+          $ref: '#/components/schemas/TravelMethodViewModel'
+        description:
+          type: string
+          nullable: true
+        isAdvancePaymentRequested:
+          type: boolean
+        isAccommodationUsed:
+          type: boolean
+        isVehicleRequested:
+          type: boolean
+        currency:
+          $ref: '#/components/schemas/CurrencyViewModel'
+        advancePaymentAmount:
+          type: number
+          format: double
+          nullable: true
+      additionalProperties: false
+    TravelDetailsViewModel:
+      type: object
+      properties:
+        expenseCenterId:
+          type: integer
+          format: int32
+        expenseCenterObjectId:
+          type: string
+          format: uuid
+        travelTypeId:
+          type: integer
+          format: int32
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TravelGetAllResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        countryCode:
+          type: string
+          nullable: true
+        cityName:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+      additionalProperties: false
+    TravelGetAllResponseModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TravelGetAllResponseModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    TravelGetDetailsResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        approverCount:
+          type: integer
+          format: int32
+        country:
+          $ref: '#/components/schemas/CountryViewModel'
+        city:
+          $ref: '#/components/schemas/CityViewModel'
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+        details:
+          $ref: '#/components/schemas/TravelDetailsModel'
+        expenses:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    TravelGetDetailsResponseModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TravelGetDetailsResponseModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/TravelGetDetailsResponseModel'
+      additionalProperties: false
+    TravelMethodViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TravelRequestGetAllResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/UserOfRequestViewModel'
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        countryCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+      additionalProperties: false
+    TravelRequestGetAllResponseModelICollectionIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TravelRequestGetAllResponseModelICollectionResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TravelRequestGetAllResponseModel'
+          nullable: true
+      additionalProperties: false
+    TravelRequestGetResponseModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        user:
+          $ref: '#/components/schemas/UserOfRequestViewModel'
+        approverCount:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        countryCode:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StatusViewModel'
+        details:
+          $ref: '#/components/schemas/TravelDetailsViewModel'
+        requestDetails:
+          $ref: '#/components/schemas/RequestDetailsModel'
+      additionalProperties: false
+    TravelRequestGetResponseModelIServiceResult:
+      type: object
+      properties:
+        result:
+          $ref: '#/components/schemas/Result'
+        isSuccess:
+          type: boolean
+          readOnly: true
+        errorResult:
+          $ref: '#/components/schemas/ErrorResult'
+      additionalProperties: false
+    TravelRequestGetResponseModelResult:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/HttpStatus'
+        data:
+          $ref: '#/components/schemas/TravelRequestGetResponseModel'
+      additionalProperties: false
+    TravelTypeViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        languageCode:
+          type: string
+          nullable: true
+        text:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TravelUpdateRequestModel:
+      type: object
+      properties:
+        title:
+          type: string
+          nullable: true
+        expenseCenterId:
+          type: integer
+          format: int32
+          nullable: true
+        expenseCenterObjectId:
+          type: string
+          format: uuid
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date
+          nullable: true
+        endDate:
+          type: string
+          format: date
+          nullable: true
+        countryId:
+          type: integer
+          format: int32
+          nullable: true
+        cityId:
+          type: integer
+          format: int32
+          nullable: true
+        travelTypeId:
+          type: integer
+          format: int32
+          nullable: true
+        travelMethodId:
+          type: integer
+          format: int32
+          nullable: true
+        isAccommodationUsed:
+          type: boolean
+          nullable: true
+        isVehicleRequested:
+          type: boolean
+        isAdvancePaymentRequired:
+          type: boolean
+          nullable: true
+        advancePaymentAmount:
+          type: number
+          format: double
+          nullable: true
+        currencyId:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    TravelViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        title:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        applicationUserId:
+          type: string
+          format: uuid
+        applicationUser:
+          $ref: '#/components/schemas/ApplicationUserViewModel'
+        expenseCollections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExpenseCollectionViewModel'
+          nullable: true
+      additionalProperties: false
+    UserOfRequestViewModel:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    VatRateViewModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        rate:
+          type: number
+          format: double
+        costType:
+          $ref: '#/components/schemas/CostTypeViewModel'
+      additionalProperties: false
   securitySchemes:
-    petstore_auth:
-      type: oauth2
-      flows:
-        implicit:
-          authorizationUrl: 'https://petstore.swagger.io/oauth/authorize'
-          scopes:
-            'write:pets': modify pets in your account
-            'read:pets': read your pets
-    api_key:
+    oauth2:
       type: apiKey
-      name: api_key
+      description: Standard Authorization header using the Bearer scheme("bearer {token}")
+      name: Authorization
       in: header
+security:
+  - oauth2: []

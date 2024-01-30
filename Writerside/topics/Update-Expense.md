@@ -1,50 +1,17 @@
 # Update Expense
 
-Same endpoint will be used for updating draft expenses and pending expenses.
-If expense status is pending, backend will abort the previous request and create a new one.
-Else if it is a draft, same request object will sustain.
-Fill whatever needs to be updated and leave null to the rest.
+## Update Expense Content By Expense Id
 
-```HTTP
-PATCH /expense/{id}
-```
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expense/{id}" method="PATCH"/>
 
-### Request
+## Update Expense Status By Expense Id
 
->Given in json for readability, application type is actually in multipart/formdata
-> 
-{style="note"}
-```json
-{
-    "Headers": {
-    "Authorization": "Bearer token"
-    },
-    "Body": {
-        "isTravelExpense": "bool",
-        "title": "string",
-        "expenseCenterId(masrafTuru)": "int",
-        "expenseCenterObjectId(secilenProje)": "guid",
-        "costTypeId(giderTuru)": "int",
-        "institutionName": "string",
-        "documentNumber": "int",
-        "documentDate": "dateOnly",
-        "paymentMethodId": "int",
-        "totalAmount": "decimal",
-        "currencyId": "int",
-        "vatRateId": "int",
-        "description": "string"
-    }
-}
-```
-{collapsible="true"}
+### Send For Approval
 
-### Success Response
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expense/send/{id}" method="PATCH"/>
 
-```json
-{
-  "isSuccess": true,
-  "statusCode": 204,
-  "data": null
-}
-```
-{collapsible="true"}
+### Abort Pending Expense
+
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/expense/abort/{id}" method="PATCH"/>
+
+## Process Engineer Notes

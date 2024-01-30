@@ -1,27 +1,7 @@
 # Delete Travel
 
-```HTTP
-DELETE /travel/{id}
-```
+## Delete Travel By ID
 
-### Request
+<api-endpoint openapi-path="../openapi.yaml" endpoint="/api/Travel" method="DELETE"/>
 
-```json
-{
-  "Headers": {
-    "Authorization": "Bearer token"
-  }
-}
-```
-{collapsible="true"}
-
-### Success Response
-
-```json
-{
-  "isSuccess": true,
-  "statusCode": 204,
-  "data": null
-}
-```
-{collapsible="true"}
+## Process Engineer Notes

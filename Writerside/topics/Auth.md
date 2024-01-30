@@ -1,3 +1,0 @@
-# Auth
-
-Start typing here...

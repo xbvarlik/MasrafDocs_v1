@@ -82,4 +82,152 @@
         <description>Created after removal of "Changes" from API Docs</description>
         <accepts>Changes.html</accepts>
     </rule>
+    <rule id="3be550b2">
+        <description>Created after removal of "Login" from API Docs</description>
+        <accepts>Login.html</accepts>
+    </rule>
+    <rule id="4e06da0e">
+        <description>Created after removal of "Password Reset Request" from API Docs</description>
+        <accepts>Password-Reset-Request.html</accepts>
+    </rule>
+    <rule id="48a71e40">
+        <description>Created after removal of "Change Password" from API Docs</description>
+        <accepts>Change-Password.html</accepts>
+    </rule>
+    <rule id="17a52e4f">
+        <description>Created after removal of "Get Expense Types" from API Docs</description>
+        <accepts>Get-Expense-Types.html</accepts>
+    </rule>
+    <rule id="4f18e817">
+        <description>Created after removal of "Delete Expense" from API Docs</description>
+        <accepts>Delete-Expense.html</accepts>
+    </rule>
+    <rule id="7627660">
+        <description>Created after removal of "Update Expense" from API Docs</description>
+        <accepts>Update-Expense.html</accepts>
+    </rule>
+    <rule id="1b72d709">
+        <description>Created after removal of "Create Expense (MasrafGiris)" from API Docs</description>
+        <accepts>CreateExpense.html</accepts>
+    </rule>
+    <rule id="3d0e0b86">
+        <description>Created after removal of "Get Expense Details" from API Docs</description>
+        <accepts>Expense-Details.html</accepts>
+    </rule>
+    <rule id="6c69549">
+        <description>Created after removal of "Get Expenses" from API Docs</description>
+        <accepts>My-Expenses.html</accepts>
+    </rule>
+    <rule id="2ebea351">
+        <description>Created after removal of "Get Projects" from API Docs</description>
+        <accepts>Get-Projects.html</accepts>
+    </rule>
+    <rule id="4e3bc408">
+        <description>Created after removal of "Get Approved Travels" from API Docs</description>
+        <accepts>Get-Approved-Travels.html</accepts>
+    </rule>
+    <rule id="27b45974">
+        <description>Created after removal of "Create Expense Collection" from API Docs</description>
+        <accepts>Create-Expense-Collection.html</accepts>
+    </rule>
+    <rule id="468b191e">
+        <description>Created after removal of "Get Expense Collections (Klasorler)" from API Docs</description>
+        <accepts>Get-Expense-Collections.html</accepts>
+    </rule>
+    <rule id="3e749cf7">
+        <description>Created after removal of "Edit Expense Collection" from API Docs</description>
+        <accepts>Edit-Expense-Collection.html</accepts>
+    </rule>
+    <rule id="20491b16">
+        <description>Created after removal of "Add Expense to Collection" from API Docs</description>
+        <accepts>Add-Expense-to-Collection.html</accepts>
+    </rule>
+    <rule id="2352b9cd">
+        <description>Created after removal of "Remove Expenses From Collection" from API Docs</description>
+        <accepts>Remove-Expenses-From-Collection.html</accepts>
+    </rule>
+    <rule id="33bbdb26">
+        <description>Created after removal of "Delete Expense Collection" from API Docs</description>
+        <accepts>Delete-Expense-Collection.html</accepts>
+    </rule>
+    <rule id="723ccae4">
+        <description>Created after removal of "Get Tags" from API Docs</description>
+        <accepts>Get-Tags.html</accepts>
+    </rule>
+    <rule id="3d9ca68e">
+        <description>Created after removal of "Create Travel" from API Docs</description>
+        <accepts>Create-Travel.html</accepts>
+    </rule>
+    <rule id="22d472b5">
+        <description>Created after removal of "Get Travels" from API Docs</description>
+        <accepts>Get-Travels.html</accepts>
+    </rule>
+    <rule id="1b3e1471">
+        <description>Created after removal of "Get Travel Details" from API Docs</description>
+        <accepts>Get-Travel-Details.html</accepts>
+    </rule>
+    <rule id="2666310b">
+        <description>Created after removal of "Update Travel" from API Docs</description>
+        <accepts>Update-Travel.html</accepts>
+    </rule>
+    <rule id="20b7329c">
+        <description>Created after removal of "Delete Travel" from API Docs</description>
+        <accepts>Delete-Travel.html</accepts>
+    </rule>
+    <rule id="11d9d039">
+        <description>Created after removal of "Approve Request" from API Docs</description>
+        <accepts>Approve-Request.html</accepts>
+    </rule>
+    <rule id="11b02edf">
+        <description>Created after removal of "Reject Request" from API Docs</description>
+        <accepts>Reject-Request.html</accepts>
+    </rule>
+    <rule id="5d88eeeb">
+        <description>Created after removal of "Get Expense Requests" from API Docs</description>
+        <accepts>Get-Expense-Requests.html</accepts>
+    </rule>
+    <rule id="7998f5ac">
+        <description>Created after removal of "Expense Request Details" from API Docs</description>
+        <accepts>Expense-Request-Details.html</accepts>
+    </rule>
+    <rule id="5df6c76a">
+        <description>Created after removal of "Get Travel Requests" from API Docs</description>
+        <accepts>Get-Travel-Requests.html</accepts>
+    </rule>
+    <rule id="3b6e1807">
+        <description>Created after removal of "Get Travel Request Details" from API Docs</description>
+        <accepts>Get-Travel-Request-Details.html</accepts>
+    </rule>
+    <rule id="26e2577">
+        <description>Created after removal of "Home" from API Docs</description>
+        <accepts>Home.html</accepts>
+    </rule>
+    <rule id="14566274">
+        <description>Created after removal of "Auth" from API Docs</description>
+        <accepts>Auth.html</accepts>
+    </rule>
+    <rule id="4c8f4327">
+        <description>Created after removal of "Expense" from API Docs</description>
+        <accepts>Expense.html</accepts>
+    </rule>
+    <rule id="1281aa23">
+        <description>Created after removal of "Expense Collection" from API Docs</description>
+        <accepts>Expense-Collection.html</accepts>
+    </rule>
+    <rule id="65fb85d9">
+        <description>Created after removal of "Travel" from API Docs</description>
+        <accepts>Travel.html</accepts>
+    </rule>
+    <rule id="2b906165">
+        <description>Created after removal of "Approval" from API Docs</description>
+        <accepts>Requests.html</accepts>
+    </rule>
+    <rule id="704b33ef">
+        <description>Created after removal of "Generated API Docs" from API Docs</description>
+        <accepts>Generated-API-Docs.html</accepts>
+    </rule>
+    <rule id="2ee5aa4">
+        <description>Created after removal of "Reject Request" from API Docs</description>
+        <accepts>Reject-Request.html</accepts>
+    </rule>
 </rules>
